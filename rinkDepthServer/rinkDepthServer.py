@@ -21,6 +21,8 @@ while True:
 		print('Receiving...\n')
 		f.write(l.decode())
 		l = c.recv(1024)
+	#c.send(b'Received!')
+	#c.send()
 	f.close()
 	print('Done!')
 	c.close()
