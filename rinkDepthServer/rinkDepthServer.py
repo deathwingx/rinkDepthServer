@@ -8,8 +8,10 @@ s = socket(AF_INET, SOCK_STREAM)
 s.bind((HOST, PORT))
 today = date.today()
 file = r'C:\Users\berna\Documents\rinkDepth\\'
-#file+=today.strftime("%m/%d/%y")
-file+='test'
+date = today.strftime("%m/%d/%y")
+date = date.replace('/', '')
+file+=date
+#file+='test'
 file+='.csv'
 f = open(file, 'x')
 s.listen(5)
@@ -21,7 +23,9 @@ while True:
 		print('Receiving...\n')
 		f.write(l.decode())
 		l = c.recv(1024)
-	#c.send(b'Received!')
+	done = 'Received!'
+	bytesdone = done.encode()
+	c.sendall(bytesdone)
 	#c.send()
 	f.close()
 	print('Done!')
